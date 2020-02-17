@@ -6,11 +6,11 @@ class Newton:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-        self.b = self.coef()
+        self.b = self.calculate_coefficients()
         self.time = np.linspace(self.x[0], self.x[-1], 1000)
-        self.result = self.newton()
+        self.result = self.interpolate()
 
-    def coef(self):
+    def calculate_coefficients(self):
         b = []
         for i in range(len(self.x)):
             b.append(self.y[i])
@@ -21,7 +21,7 @@ class Newton:
 
         return np.array(b)
 
-    def newton(self):
+    def interpolate(self):
         n = len(self.b) - 1
         current_value = self.b[n]
         for i in range(n - 1, -1, -1):
